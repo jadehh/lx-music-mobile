@@ -114,7 +114,8 @@ export const play = async(time: number): Promise<void> => {
  * pause lyric
  */
 export const pause = async(): Promise<void> => {
-  return LyricModule.pause()
+  console.log("pause")
+  // return LyricModule.pause()
 }
 
 /**
@@ -124,11 +125,14 @@ export const pause = async(): Promise<void> => {
  * @param romalrc lyric translation
  */
 export const setLyric = async(lyric: string, translation: string, romalrc: string): Promise<void> => {
-  return LyricModule.setLyric(lyric, translation || '', romalrc || '')
+  console.log("setLyric")
+  // return LyricModule.setLyric(lyric, translation || '', romalrc || '')
 }
 
 export const setPlaybackRate = async(rate: number): Promise<void> => {
-  return LyricModule.setPlaybackRate(rate)
+  console.log("setPlaybackRate")
+  // return LyricModule.setPlaybackRate(rate)
+
 }
 
 /**
@@ -136,7 +140,8 @@ export const setPlaybackRate = async(rate: number): Promise<void> => {
  * @param isShowTranslation is show translation
  */
 export const toggleTranslation = async(isShowTranslation: boolean): Promise<void> => {
-  return LyricModule.toggleTranslation(isShowTranslation)
+  console.log("toggleTranslation")
+  // return LyricModule.toggleTranslation(isShowTranslation)
 }
 
 /**
@@ -144,7 +149,8 @@ export const toggleTranslation = async(isShowTranslation: boolean): Promise<void
  * @param isShowRoma is show roma lyric
  */
 export const toggleRoma = async(isShowRoma: boolean): Promise<void> => {
-  return LyricModule.toggleRoma(isShowRoma)
+  // return LyricModule.toggleRoma(isShowRoma)
+  console.log("toggleRoma")
 }
 
 /**
@@ -152,7 +158,8 @@ export const toggleRoma = async(isShowRoma: boolean): Promise<void> => {
  * @param isLock is lock lyric window
  */
 export const toggleLock = async(isLock: boolean): Promise<void> => {
-  return LyricModule.toggleLock(isLock)
+  console.log("toggleLock")
+  // return LyricModule.toggleLock(isLock)
 }
 
 /**

@@ -38,7 +38,7 @@ export const request = async(url: string, { timeout = 10000, ...options }: Reque
 //   return Buffer.concat([decipher.update(Buffer.from(text, 'base64')), decipher.final()]).toString()
 // }
 
-export { generateRsaKey } from '@/utils/nativeModules/crypto'
+export { generateRsaKey } from '@/utils/nativeModules/cryptoMoudle.ts'
 // export const generateRsaKey = async() => new Promise<{ publicKey: string, privateKey: string }>((resolve, reject) => {
 //   generateKeyPair(
 //     'rsa',

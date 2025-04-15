@@ -31,14 +31,15 @@ export default memo(({
 
   const checkExternalStoragePath = useCallback(() => {
     storagePathsRef.current = []
-    void getExternalStoragePaths().then(async(storagePaths) => {
-      for (const path of storagePaths) {
-        try {
-          if (!(await stat(path)).canRead) continue
-        } catch { continue }
-        storagePathsRef.current.push(path)
-      }
-    })
+    console.log("getExternalStoragePaths")
+    // void getExternalStoragePaths().then(async(storagePaths) => {
+    //   for (const path of storagePaths) {
+    //     try {
+    //       if (!(await stat(path)).canRead) continue
+    //     } catch { continue }
+    //     storagePathsRef.current.push(path)
+    //   }
+    // })
   }, [])
   useEffect(() => {
     checkExternalStoragePath()

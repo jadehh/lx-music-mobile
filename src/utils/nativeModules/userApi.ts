@@ -96,5 +96,6 @@ export const onScriptAction = (handler: (event: ActionsEvent) => void): () => vo
 }
 
 export const destroy = () => {
-  UserApiModule.destroy()
+  console.log("destroy")
+  // UserApiModule.destroy()
 }

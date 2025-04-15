@@ -170,14 +170,23 @@ export const setVolume = async(num: number) => TrackPlayer.setVolume(num)
 export const setPlaybackRate = async(num: number) => TrackPlayer.setRate(num)
 export const updateNowPlayingTitles = async(duration: number, title: string, artist: string, album: string) => {
   console.log('set playing titles', duration, title, artist, album)
-  return TrackPlayer.updateNowPlayingTitles(duration, title, artist, album)
+  // return TrackPlayer.updateNowPlayingTitles(duration, title, artist, album)
 }
 
 export const resetPlay = async() => Promise.all([setPause(), setCurrentTime(0)])
 
-export const isCached = async(url: string) => TrackPlayer.isCached(url)
-export const getCacheSize = async() => TrackPlayer.getCacheSize()
-export const clearCache = async() => TrackPlayer.clearCache()
+export const isCached = async(url: string) => {
+  console.log("isCached")
+  // TrackPlayer.isCached(url)
+}
+export const getCacheSize = async() => {
+  // TrackPlayer.getCacheSize()
+  console.log("get CacheSize")
+}
+export const clearCache = async() => {
+  console.log("clear cache")
+  // TrackPlayer.clearCache()
+}
 export const migratePlayerCache = async() => {
   const newCachePath = privateStorageDirectoryPath + '/TrackPlayer'
   if (await existsFile(newCachePath)) return
@@ -203,6 +212,7 @@ type PlayStatus = 'None' | 'Ready' | 'Playing' | 'Paused' | 'Stopped' | 'Bufferi
 export const onStateChange = async(listener: (state: PlayStatus) => void) => {
   const sub = TrackPlayer.addEventListener(Event.PlaybackState, state => {
     let _state: PlayStatus
+    console.log(state)
     switch (state) {
       case State.Ready:
         _state = 'Ready'

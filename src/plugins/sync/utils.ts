@@ -1,5 +1,5 @@
 // import { createCipheriv, createDecipheriv, publicEncrypt, privateDecrypt, constants } from 'crypto'
-import { aesEncryptSync, aesDecryptSync, rsaEncryptSync, rsaDecryptSync, AES_MODE, RSA_PADDING } from '@/utils/nativeModules/crypto'
+import { aesEncryptSync, aesDecryptSync, rsaEncryptSync, rsaDecryptSync, AES_MODE, RSA_PADDING } from '@/utils/nativeModules/cryptoMoudle.ts'
 import { btoa } from 'react-native-quick-base64'
 
 

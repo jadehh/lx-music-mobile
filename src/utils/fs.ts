@@ -3,15 +3,10 @@ import {
   Dirs,
   FileSystem,
   AndroidScoped,
-  type OpenDocumentOptions,
   type Encoding,
   type HashAlgorithm,
-  getExternalStoragePaths as _getExternalStoragePaths,
-} from 'react-native-file-system'
+} from 'react-native-file-access'
 
-export type {
-  FileType,
-} from 'react-native-file-system'
 
 // export const externalDirectoryPath = RNFS.ExternalDirectoryPath
 
@@ -21,19 +16,41 @@ export const temporaryDirectoryPath = Dirs.CacheDir
 export const externalStorageDirectoryPath = Dirs.SDCardDir
 export const privateStorageDirectoryPath = Dirs.DocumentDir
 
-export const getExternalStoragePaths = async(is_removable?: boolean) => _getExternalStoragePaths(is_removable)
+export const getExternalStoragePaths = async(is_removable?: boolean) => {
+   // _getExternalStoragePaths(is_removable)
+  console.log("getExternalStoragePaths")
+}
 
-export const selectManagedFolder = async(isPersist: boolean = false) => AndroidScoped.openDocumentTree(isPersist)
-export const selectFile = async(options: OpenDocumentOptions) => AndroidScoped.openDocument(options)
-export const removeManagedFolder = async(path: string) => AndroidScoped.releasePersistableUriPermission(path)
-export const getManagedFolders = async() => AndroidScoped.getPersistedUriPermissions()
+export const selectManagedFolder = async(isPersist: boolean = false) => {
+  // AndroidScoped.openDocumentTree(isPersist)
+  console.log("selectManagedFolder")
+}
+export const selectFile = async(options:any) =>{
+    console.log("selectManagedFolder")
+   // AndroidScoped.openDocument(options)
+}
+export const removeManagedFolder = async(path: string) => {
+  // AndroidScoped.releasePersistableUriPermission(path)
+  console.log("removeManagedFolder")
+}
+export const getManagedFolders = async() => {
+  // AndroidScoped.getPersistedUriPermissions()
+    console.log("getManagedFolders")
+}
 
-export const getPersistedUriList = async() => AndroidScoped.getPersistedUriPermissions()
+export const getPersistedUriList = async() => {
+  // AndroidScoped.getPersistedUriPermissions()
+      console.log("getPersistedUriList")
+}
 
 
 export const readDir = async(path: string) => FileSystem.ls(path)
 
-export const unlink = async(path: string) => FileSystem.unlink(path)
+export const unlink = async(path: string) => {
+    console.log("unlink",path)
+   FileSystem.unlink(path)
+  }
+
 
 export const mkdir = async(path: string) => FileSystem.mkdir(path)
 
@@ -46,14 +63,29 @@ export const readFile = async(path: string, encoding?: Encoding) => FileSystem.r
 // export const copyFile = async(fromPath: string, toPath: string) => FileSystem.cp(fromPath, toPath)
 
 export const moveFile = async(fromPath: string, toPath: string) => FileSystem.mv(fromPath, toPath)
-export const gzipFile = async(fromPath: string, toPath: string) => FileSystem.gzipFile(fromPath, toPath)
-export const unGzipFile = async(fromPath: string, toPath: string) => FileSystem.unGzipFile(fromPath, toPath)
-export const gzipString = async(data: string, encoding?: Encoding) => FileSystem.gzipString(data, encoding)
-export const unGzipString = async(data: string, encoding?: Encoding) => FileSystem.unGzipString(data, encoding)
+export const gzipFile = async(fromPath: string, toPath: string) => {
+  console.log("gzipFile")
+  // FileSystem.gzipFile(fromPath, toPath)
+}
+export const unGzipFile = async(fromPath: string, toPath: string) => {
+  console.log("unGzipFile")
+  // FileSystem.unGzipFile(fromPath, toPath)
+}
+export const gzipString = async(data: string, encoding?: Encoding) => {
+   // FileSystem.gzipString(data, encoding)
+  console.log("gzipString")
+}
+export const unGzipString = async(data: string, encoding?: Encoding) => {
+  console.log("unGzipString")
+   // FileSystem.unGzipString(data, encoding)
+}
 
 export const existsFile = async(path: string) => FileSystem.exists(path)
 
-export const rename = async(path: string, name: string) => FileSystem.rename(path, name)
+export const rename = async(path: string, name: string) => {
+  console.log("rename")
+  // FileSystem.rename(path, name)
+}
 
 export const writeFile = async(path: string, data: string, encoding?: Encoding) => FileSystem.writeFile(path, data, encoding)
 

@@ -2,9 +2,15 @@ import { AppState, NativeEventEmitter, NativeModules } from 'react-native'
 
 const { UtilsModule } = NativeModules
 
-export const exitApp = UtilsModule.exitApp
+export const exitApp = () => {
+  // UtilsModule.exitApp
+  console.log("exit App")
+}
 
-export const getSupportedAbis = UtilsModule.getSupportedAbis
+export const getSupportedAbis = () =>{
+  console.log("getSupported Abis")
+  // UtilsModule.getSupportedAbis
+}
 
 export const installApk = (filePath: string, fileProviderAuthority: string) => UtilsModule.installApk(filePath, fileProviderAuthority)
 
@@ -12,22 +18,30 @@ export const installApk = (filePath: string, fileProviderAuthority: string) => U
 export const screenkeepAwake = () => {
   if (global.lx.isScreenKeepAwake) return
   global.lx.isScreenKeepAwake = true
-  UtilsModule.screenkeepAwake()
+  console.log("screenkeepAwake")
+  // UtilsModule.screenkeepAwake()
 }
 export const screenUnkeepAwake = () => {
   // console.log('screenUnkeepAwake')
   if (!global.lx.isScreenKeepAwake) return
   global.lx.isScreenKeepAwake = false
-  UtilsModule.screenUnkeepAwake()
+    console.log("screenUnkeepAwake")
+  // UtilsModule.screenUnkeepAwake()
 }
 
-export const getWIFIIPV4Address = UtilsModule.getWIFIIPV4Address as () => Promise<string>
+export const getWIFIIPV4Address = async():Promise<string> => {
+  console.log("getWIFIIPV4Address")
+  return ""
+}
 
 export const getDeviceName = async(): Promise<string> => {
   return UtilsModule.getDeviceName().then((deviceName: string) => deviceName || 'Unknown')
 }
 
-export const isNotificationsEnabled = UtilsModule.isNotificationsEnabled as () => Promise<boolean>
+export const isNotificationsEnabled = async(): Promise<boolean> =>{
+  // UtilsModule.isNotificationsEnabled as ()
+  return false
+}
 
 export const requestNotificationPermission = async() => new Promise<boolean>((resolve) => {
   let subscription = AppState.addEventListener('change', (state) => {
@@ -49,7 +63,9 @@ export const shareText = async(shareTitle: string, title: string, text: string):
 }
 
 export const getSystemLocales = async(): Promise<string> => {
-  return UtilsModule.getSystemLocales()
+    // return UtilsModule.getSystemLocales()
+  console.log("get System Locales")
+  return ""
 }
 
 export const onScreenStateChange = (handler: (state: 'ON' | 'OFF') => void): () => void => {
@@ -65,7 +81,9 @@ export const onScreenStateChange = (handler: (state: 'ON' | 'OFF') => void): () 
 }
 
 export const getWindowSize = async(): Promise<{ width: number, height: number }> => {
-  return UtilsModule.getWindowSize()
+  console.log("get windows Size")
+  return {width:720,height:640}
+  // return UtilsModule.getWindowSize()
 }
 
 export const onWindowSizeChange = (handler: (size: { width: number, height: number }) => void): () => void => {
@@ -82,7 +100,8 @@ export const onWindowSizeChange = (handler: (size: { width: number, height: numb
 }
 
 export const isIgnoringBatteryOptimization = async(): Promise<boolean> => {
-  return UtilsModule.isIgnoringBatteryOptimization()
+  console.log("isIgnoringBatteryOptimization")
+  // return UtilsModule.isIgnoringBatteryOptimization()
 }
 
 export const requestIgnoreBatteryOptimization = async() => new Promise<boolean>((resolve) => {

@@ -1,7 +1,7 @@
 // import BackgroundTimer from 'react-native-background-timer'
 // import { httpGet, httpFetch } from '../../request'
 import { toMD5 } from '../utils'
-import { aesEncryptSync, aesDecryptSync, AES_MODE } from '@/utils/nativeModules/crypto'
+import { aesEncryptSync, aesDecryptSync, AES_MODE } from '@/utils/nativeModules/cryptoMoudle'
 export { default as decodeLyric } from './decodeLyric'
 
 // const kw_token = {

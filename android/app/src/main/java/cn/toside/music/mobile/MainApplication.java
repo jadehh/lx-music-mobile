@@ -30,11 +30,11 @@ public class MainApplication extends NavigationApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
-          packages.add(new CachePackage());
-          packages.add(new LyricPackage());
-          packages.add(new UtilsPackage());
+//           packages.add(new CachePackage());
+//           packages.add(new LyricPackage());
+//           packages.add(new UtilsPackage());
           packages.add(new CryptoPackage());
-          packages.add(new UserApiPackage());
+//           packages.add(new UserApiPackage());
           return packages;
         }
 

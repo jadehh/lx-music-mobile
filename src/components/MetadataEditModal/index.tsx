@@ -3,14 +3,14 @@ import ConfirmAlert, { type ConfirmAlertType } from '@/components/common/Confirm
 import Text from '@/components/common/Text'
 import { View } from 'react-native'
 import { TEMP_FILE_PATH, createStyle, toast } from '@/utils/tools'
-import {
-  readMetadata,
-  readPic,
-  readLyric,
-  writeMetadata,
-  writePic,
-  writeLyric,
-} from '@/utils/localMediaMetadata'
+// import {
+//   readMetadata,
+//   readPic,
+//   readLyric,
+//   writeMetadata,
+//   writePic,
+//   writeLyric,
+// } from '@/utils/localMediaMetadata'
 import { useUnmounted } from '@/utils/hooks'
 import MetadataForm, { defaultData, type Metadata, type MetadataFormType } from './MetadataForm'
 import { log } from '@/utils/log'
@@ -40,25 +40,28 @@ export default forwardRef<MetadataEditType, MetadataEditProps>((props, ref) => {
 
   const handleShow = (filePath: string) => {
     alertRef.current?.setVisible(true)
-    void Promise.all([
-      readMetadata(filePath),
-      readPic(filePath).catch(() => ''),
-      readLyric(filePath, false).catch(() => ''),
-    ]).then(async([_metadata, pic, lyric]) => {
-      if (!_metadata) return
-      if (isUnmounted.current) return
-      metadata.current = {
-        name: _metadata.name,
-        singer: _metadata.singer,
-        albumName: _metadata.albumName,
-        pic,
-        interval: formatPlayTime2(_metadata.interval),
-        lyric,
-      }
-      requestAnimationFrame(() => {
-        metadataFormRef.current?.setForm(filePath, metadata.current)
-      })
-    })
+    log.warn("readMetadata")
+    log.warn("readPic")
+    log.warn("readLyric")
+    // void Promise.all([
+    //   readMetadata(filePath),
+    //   readPic(filePath).catch(() => ''),
+    //   readLyric(filePath, false).catch(() => ''),
+    // ]).then(async([_metadata, pic, lyric]) => {
+    //   if (!_metadata) return
+    //   if (isUnmounted.current) return
+    //   metadata.current = {
+    //     name: _metadata.name,
+    //     singer: _metadata.singer,
+    //     albumName: _metadata.albumName,
+    //     pic,
+    //     interval: formatPlayTime2(_metadata.interval),
+    //     lyric,
+    //   }
+    //   requestAnimationFrame(() => {
+    //     metadataFormRef.current?.setForm(filePath, metadata.current)
+    //   })
+    // })
   }
   useImperativeHandle(ref, () => ({
     show(path) {
@@ -89,20 +92,21 @@ export default forwardRef<MetadataEditType, MetadataEditProps>((props, ref) => {
         _metadata.albumName != metadata.current.albumName
       ) {
         isUpdated ||= true
-        await writeMetadata(filePath.current, {
-          name: _metadata.name,
-          singer: _metadata.singer,
-          albumName: _metadata.albumName,
-        })
+        log.warn("writeMetaData")
+        // await writeMetadata(filePath.current, {
+        //   name: _metadata.name,
+        //   singer: _metadata.singer,
+        //   albumName: _metadata.albumName,
+        // })
       }
       if (_metadata.pic != metadata.current.pic) {
         isUpdated ||= true
-        await writePic(filePath.current, _metadata.pic)
+        // await writePic(filePath.current, _metadata.pic)
         if (_metadata.pic.startsWith(TEMP_FILE_PATH)) void unlink(_metadata.pic)
       }
       if (_metadata.lyric != metadata.current.lyric) {
         isUpdated ||= true
-        await writeLyric(filePath.current, _metadata.lyric)
+        // await writeLyric(filePath.current, _metadata.lyric)
       }
     } catch (err: any) {
       log.error(`save (${filePath.current}) metadata failed: \n${err.message}`)

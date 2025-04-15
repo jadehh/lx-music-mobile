@@ -6,7 +6,7 @@ import {
   AES_MODE,
   aesEncrypt,
   aesDecrypt,
-} from '@/utils/nativeModules/crypto'
+} from '@/utils/nativeModules/cryptoMoudle.ts'
 
 
 const publicKey = `
