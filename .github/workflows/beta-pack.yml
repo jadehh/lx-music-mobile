@@ -21,7 +21,7 @@ jobs:
       - name: Build Packages
         run: |
           cd ios
-          xcodebuild -scheme LxMusicMobile -workspace LxMusicMobile.xcworkspace -configuration release archive -archivePath LxMusicMobile.xcarchive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -scheme LxMusicMobile -workspace LxMusicMobile.xcodeproj -configuration release archive -archivePath LxMusicMobile.xcarchive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
           chmod a+x ../scripts/xcarchive_to_ipa.sh
           ../scripts/xcarchive_to_ipa.sh LxMusicMobile.xcarchive
       - name: Upload IPA
