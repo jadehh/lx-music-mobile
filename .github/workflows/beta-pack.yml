@@ -18,7 +18,7 @@ jobs:
       - name: Install sponge
         run: brew install sponge
       - name: Setup
-        uses: ./.github/actions/prebuild
+        uses: ./.github/actions/setup
         with:
           platform: "ios"
       - name: Build Packages
@@ -48,8 +48,7 @@ jobs:
         shell: bash
         run: |
           cd android
-          echo ${{ secrets.KEYSTORE_STORE_FILE_BASE64 }} | base64 --decode > app/${{ secrets.KEYSTORE_STORE_FILE }}
-          ./gradlew assembleRelease -PMYAPP_UPLOAD_STORE_FILE='${{ secrets.KEYSTORE_STORE_FILE }}' -PMYAPP_UPLOAD_KEY_ALIAS='${{ secrets.KEYSTORE_KEY_ALIAS }}' -PMYAPP_UPLOAD_STORE_PASSWORD='${{ secrets.KEYSTORE_PASSWORD }}' -PMYAPP_UPLOAD_KEY_PASSWORD='${{ secrets.KEYSTORE_KEY_PASSWORD }}'
+          ./gradlew assembleRelease
           rm -f app/${{ secrets.KEYSTORE_STORE_FILE }}
 
       # Push tag to GitHub if package.json version's tag is not tagged
