@@ -2,9 +2,11 @@ import {NativeModules} from 'react-native'
 
 const {CryptoModule} = NativeModules
 
-import CryptoES from "crypto-es";
-import {Base64} from "crypto-es/lib/enc-base64";
+import {log} from "@/utils/log.ts";
 
+import CryptoES from 'crypto-es'
+
+import {cheatTip} from "@/utils/tools.ts";
 
 function padTo16Bytes(buffer: Buffer): Buffer {
   const length = buffer.length;
@@ -91,32 +93,39 @@ export const aesDecrypt = async (text: string, key: string, vi: string, mode: AE
 }
 
 export const aesEncryptSync = (text: string, key: string, vi: string, mode: AES_MODE): string => {
-  // console.log(sourceFilePath, targetFilePath)
-  console.log("aesEncryptSync - text:", text);
-  console.log("aesEncryptSync - key:", key);
-  console.log("aesEncryptSync - vi:", vi);
-  console.log("aesEncryptSync - mode:", mode);
+  log.debug("aesEncryptSync - text:", text);
+  log.debug("aesEncryptSync - key:", key);
+  log.debug("aesEncryptSync - vi:", vi);
+  log.debug("aesEncryptSync - mode:", mode);
 
   const textDecodeBase64 = Buffer.from(text, 'base64')
   const keyDecodeBase64 = Buffer.from(key, 'base64')
   const viDecodeBase64 = Buffer.from(vi, 'base64')
 
-  console.log("textDecodeBase64:", textDecodeBase64);
-  console.log("keyDecodeBase64 - key:", keyDecodeBase64);
-  console.log("viDecodeBase64 - vi:", viDecodeBase64);
+  log.debug("textDecodeBase64:", textDecodeBase64);
+  log.debug("keyDecodeBase64 - key:", keyDecodeBase64);
+  log.debug("viDecodeBase64 - vi:", viDecodeBase64);
 
+  var aesEncryptString = ""
+  switch (mode) {
+    case AES_MODE.CBC_128_PKCS7Padding:
+      log.todo("CBC_128_PKCS7Padding")
+      break
+    case AES_MODE.ECB_128_NoPadding:
+      const aesEncryptNoPadding = CryptoES.AES.encrypt(CryptoES.lib.WordArray.create(textDecodeBase64), CryptoES.lib.WordArray.create(keyDecodeBase64), {
+          mode: CryptoES.mode.ECB,
+          padding: CryptoES.pad.Pkcs7
+        });
+        aesEncryptString = aesEncryptNoPadding.toString()
+      break
+  }
 
-
-
-  const encryptNoPadding = CryptoES.AES.encrypt(CryptoES.lib.WordArray.create(textDecodeBase64), CryptoES.lib.WordArray.create(keyDecodeBase64), {
-    mode: CryptoES.mode.ECB,
-    padding:CryptoES.pad.Pkcs7
-  });
-
-
-  console.log("encryptNoPadding - encryptNoPadding:", Base64.stringify(encryptNoPadding.ciphertext!).replace(/[\r\n]/g, ""));
   const javaEncrypted = CryptoModule.aesEncryptSync(text, key, vi, mode)
-  console.log("java Crypto", javaEncrypted)
+  if (aesEncryptString === javaEncrypted) {
+    log.info("适配成功")
+  } else {
+    log.error("适配失败,aesEncryptString:", aesEncryptString, "javaEncrypted:", javaEncrypted);
+  }
   return javaEncrypted
 }
 

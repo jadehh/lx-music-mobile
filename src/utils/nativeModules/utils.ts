@@ -1,14 +1,15 @@
 import { AppState, NativeEventEmitter, NativeModules } from 'react-native'
+import {log} from "@/utils/log.ts";
 
 const { UtilsModule } = NativeModules
 
 export const exitApp = () => {
   // UtilsModule.exitApp
-  console.log("exit App")
+  log.todo("exit App")
 }
 
 export const getSupportedAbis = () =>{
-  console.log("getSupported Abis")
+  log.todo("getSupported Abis")
   // UtilsModule.getSupportedAbis
 }
 
@@ -18,19 +19,19 @@ export const installApk = (filePath: string, fileProviderAuthority: string) => U
 export const screenkeepAwake = () => {
   if (global.lx.isScreenKeepAwake) return
   global.lx.isScreenKeepAwake = true
-  console.log("screenkeepAwake")
+  log.todo("screenkeepAwake")
   // UtilsModule.screenkeepAwake()
 }
 export const screenUnkeepAwake = () => {
   // console.log('screenUnkeepAwake')
   if (!global.lx.isScreenKeepAwake) return
   global.lx.isScreenKeepAwake = false
-    console.log("screenUnkeepAwake")
+    log.todo("screenUnkeepAwake")
   // UtilsModule.screenUnkeepAwake()
 }
 
 export const getWIFIIPV4Address = async():Promise<string> => {
-  console.log("getWIFIIPV4Address")
+  log.todo("getWIFIIPV4Address")
   return ""
 }
 
@@ -64,7 +65,7 @@ export const shareText = async(shareTitle: string, title: string, text: string):
 
 export const getSystemLocales = async(): Promise<string> => {
     // return UtilsModule.getSystemLocales()
-  console.log("get System Locales")
+  log.todo("get System Locales")
   return ""
 }
 
@@ -81,7 +82,7 @@ export const onScreenStateChange = (handler: (state: 'ON' | 'OFF') => void): () 
 }
 
 export const getWindowSize = async(): Promise<{ width: number, height: number }> => {
-  console.log("get windows Size")
+  log.todo("get windows Size")
   return {width:720,height:640}
   // return UtilsModule.getWindowSize()
 }
@@ -99,8 +100,9 @@ export const onWindowSizeChange = (handler: (size: { width: number, height: numb
   }
 }
 
+// @ts-ignore
 export const isIgnoringBatteryOptimization = async(): Promise<boolean> => {
-  console.log("isIgnoringBatteryOptimization")
+  log.todo("isIgnoringBatteryOptimization")
   // return UtilsModule.isIgnoringBatteryOptimization()
 }
 

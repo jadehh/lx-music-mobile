@@ -4,7 +4,7 @@ import { temporaryDirectoryPath, existsFile, appendFile, unlink, writeFile, read
 const logPath = temporaryDirectoryPath + '/error.log'
 
 const logTools = {
-  tempLog: [] as Array<{ time: string, type: 'LOG' | 'WARN' | 'ERROR', text: string }> | null,
+  tempLog: [] as Array<{ time: string, type: 'TODO' | 'DEBUG' | 'INFO' | 'WARN' | 'ERROR', text: string }> | null,
   writeLog(msg: string) {
     console.log(msg)
     void appendFile(logPath, '\n----lx log----\n' + msg)
@@ -35,14 +35,35 @@ export const clearLogs = async() => {
 }
 
 export const log = {
+
+  todo(...msgs: any[]) {
+    // console.info(...msgs)
+    const msg = msgs.map(m => typeof m == 'string' ? m : m instanceof Error ? m.stack ?? m.message : JSON.stringify(m)).join(' ')
+    if (msg.startsWith('%c')) return
+    const time = new Date().toLocaleString()
+    if (logTools.tempLog) {
+      // 2025-04-15 15:25:15,092 - INFO:
+      logTools.tempLog.push({ type: 'TODO', time, text: msg })
+    } else logTools.writeLog(`${time} - TODO:${msg}`)
+  },
+    debug(...msgs: any[]) {
+    // console.info(...msgs)
+    const msg = msgs.map(m => typeof m == 'string' ? m : m instanceof Error ? m.stack ?? m.message : JSON.stringify(m)).join(' ')
+    if (msg.startsWith('%c')) return
+    const time = new Date().toLocaleString()
+    if (logTools.tempLog) {
+      // 2025-04-15 15:25:15,092 - INFO:
+      logTools.tempLog.push({ type: 'DEBUG', time, text: msg })
+    } else logTools.writeLog(`${time} - DEBUG:${msg}`)
+  },
   info(...msgs: any[]) {
     // console.info(...msgs)
     const msg = msgs.map(m => typeof m == 'string' ? m : m instanceof Error ? m.stack ?? m.message : JSON.stringify(m)).join(' ')
     if (msg.startsWith('%c')) return
     const time = new Date().toLocaleString()
     if (logTools.tempLog) {
-      logTools.tempLog.push({ type: 'LOG', time, text: msg })
-    } else logTools.writeLog(`${time} LOG ${msg}`)
+      logTools.tempLog.push({ type: 'INFO', time, text: msg })
+    } else logTools.writeLog(`${time} - INFO:${msg}`)
   },
   warn(...msgs: any[]) {
     // console.warn(...msgs)
@@ -50,7 +71,7 @@ export const log = {
     const time = new Date().toLocaleString()
     if (logTools.tempLog) {
       logTools.tempLog.push({ type: 'WARN', time, text: msg })
-    } else logTools.writeLog(`${time} WARN ${msg}`)
+    } else logTools.writeLog(`${time} - WARN:${msg}`)
   },
   error(...msgs: any[]) {
     const msg = msgs.map(m => typeof m == 'string' ? m : m instanceof Error ? m.stack ?? m.message : JSON.stringify(m)).join(' ')
@@ -58,7 +79,7 @@ export const log = {
     if (logTools.tempLog) {
       logTools.tempLog.push({ type: 'ERROR', time, text: msg })
     } else {
-      logTools.writeLog(`${time} ERROR ${msg}`)
+      logTools.writeLog(`${time} - ERROR:${msg}`)
     }
   },
 }

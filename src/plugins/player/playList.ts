@@ -3,6 +3,7 @@ import BackgroundTimer from 'react-native-background-timer'
 import { defaultUrl } from '@/config'
 // import { action as playerAction } from '@/store/modules/player'
 import settingState from '@/store/setting/state'
+import {log} from "@/utils/log.ts";
 
 
 const list: LX.Player.Track[] = []
@@ -177,7 +178,7 @@ export const playMusic = (musicInfo: LX.Player.PlayMusic, url: string, time: num
 // let duration = 0
 let prevArtwork: string | undefined
 const updateMetaInfo = async(mInfo: LX.Player.MusicInfo, lyric?: string) => {
-  console.log('updateMetaInfo', lyric)
+  log.todo('updateMetaInfo', lyric)
   const isShowNotificationImage = settingState.setting['player.isShowNotificationImage']
   // const mInfo = formatMusicInfo(musicInfo)
   // console.log('+++++updateMusicPic+++++', track.artwork, track.duration)

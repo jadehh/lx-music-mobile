@@ -66,14 +66,13 @@ export default forwardRef<ChoosePathType, ChoosePathProps>(({
           extTypes: options.filter,
           toPath: TEMP_FILE_PATH,
         }).then((file) => {
-          console.log(file)
-          // if (!file || isUnmounted.current) return
-          // if (options.filter && !options.filter.some(ext => file.data.endsWith('.' + ext))) {
-          //   toast(t('storage_file_no_match'), 'long')
-          //   void unlink(file.data)
-          //   return
-          // }
-          // onConfirm(file.data)
+          if (!file || isUnmounted.current) return
+          if (options.filter && !options.filter.some(ext => file.uri.endsWith('.' + ext))) {
+            toast(t('storage_file_no_match'), 'long')
+            void unlink(file.uri)
+            return
+          }
+          onConfirm(file.uri)
         }).catch(err => {
           if (isUnmounted.current) return
           log.warn('open document failed: ' + err.message)

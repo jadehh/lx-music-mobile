@@ -5,6 +5,7 @@ import BackgroundTimer from 'react-native-background-timer'
 import { fetchData } from './request'
 import { getUserApiList } from '@/utils/data'
 import { confirmDialog, openUrl, tipDialog } from '@/utils/tools'
+import { log as UtilLogs } from '@/utils/log.ts'
 
 
 export default async(setting: LX.AppSetting) => {
@@ -213,6 +214,7 @@ export default async(setting: LX.AppSetting) => {
   }
 
   onScriptAction((event) => {
+    UtilLogs.todo("event: ", event)
     // console.log('script actuon: ', event)
     switch (event.action) {
       case 'init':

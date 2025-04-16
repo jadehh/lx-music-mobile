@@ -10,6 +10,7 @@ import { useStatusbarHeight } from '@/store/common/hook'
 import NewFolderModal, { type NewFolderType } from './NewFolderModal'
 import OpenStorageModal, { type OpenDirModalType } from './OpenStorageModal'
 import type { PathItem } from './ListItem'
+import {log} from "@/utils/log.ts";
 
 
 export default memo(({
@@ -31,7 +32,7 @@ export default memo(({
 
   const checkExternalStoragePath = useCallback(() => {
     storagePathsRef.current = []
-    console.log("getExternalStoragePaths")
+    log.todo("getExternalStoragePaths")
     // void getExternalStoragePaths().then(async(storagePaths) => {
     //   for (const path of storagePaths) {
     //     try {

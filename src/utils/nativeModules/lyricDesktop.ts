@@ -1,4 +1,5 @@
 import { NativeModules, NativeEventEmitter } from 'react-native'
+import {log} from "@/utils/log.ts";
 
 const { LyricModule } = NativeModules
 
@@ -114,7 +115,7 @@ export const play = async(time: number): Promise<void> => {
  * pause lyric
  */
 export const pause = async(): Promise<void> => {
-  console.log("pause")
+  log.todo("pause")
   // return LyricModule.pause()
 }
 
@@ -125,12 +126,12 @@ export const pause = async(): Promise<void> => {
  * @param romalrc lyric translation
  */
 export const setLyric = async(lyric: string, translation: string, romalrc: string): Promise<void> => {
-  console.log("setLyric")
+  log.todo("set lyric")
   // return LyricModule.setLyric(lyric, translation || '', romalrc || '')
 }
 
 export const setPlaybackRate = async(rate: number): Promise<void> => {
-  console.log("setPlaybackRate")
+  log.todo("set play back rate", rate)
   // return LyricModule.setPlaybackRate(rate)
 
 }
@@ -140,7 +141,7 @@ export const setPlaybackRate = async(rate: number): Promise<void> => {
  * @param isShowTranslation is show translation
  */
 export const toggleTranslation = async(isShowTranslation: boolean): Promise<void> => {
-  console.log("toggleTranslation")
+  log.todo("toggleTranslation")
   // return LyricModule.toggleTranslation(isShowTranslation)
 }
 
@@ -150,7 +151,7 @@ export const toggleTranslation = async(isShowTranslation: boolean): Promise<void
  */
 export const toggleRoma = async(isShowRoma: boolean): Promise<void> => {
   // return LyricModule.toggleRoma(isShowRoma)
-  console.log("toggleRoma")
+  log.todo("toggleRoma")
 }
 
 /**
@@ -158,7 +159,7 @@ export const toggleRoma = async(isShowRoma: boolean): Promise<void> => {
  * @param isLock is lock lyric window
  */
 export const toggleLock = async(isLock: boolean): Promise<void> => {
-  console.log("toggleLock")
+  log.todo("toggleLock")
   // return LyricModule.toggleLock(isLock)
 }
 

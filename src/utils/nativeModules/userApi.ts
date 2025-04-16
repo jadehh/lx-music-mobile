@@ -1,9 +1,15 @@
 import { NativeEventEmitter, NativeModules } from 'react-native'
+import {log} from "@/utils/log.ts";
 
 const { UserApiModule } = NativeModules
 
 let loadScriptInfo: LX.UserApi.UserApiInfo | null = null
+
+
+
+
 export const loadScript = (info: LX.UserApi.UserApiInfo & { script: string }) => {
+  log.todo("loadScript", info)
   loadScriptInfo = info
   UserApiModule.loadScript({
     id: info.id,
@@ -31,6 +37,7 @@ export interface SendActions {
   response: SendResponseParams
 }
 export const sendAction = <T extends keyof SendActions>(action: T, data: SendActions[T]) => {
+  log.todo("sendAction", action, data)
   UserApiModule.sendAction(action, JSON.stringify(data))
 }
 
@@ -96,6 +103,6 @@ export const onScriptAction = (handler: (event: ActionsEvent) => void): () => vo
 }
 
 export const destroy = () => {
-  console.log("destroy")
+  log.todo("destroy")
   // UserApiModule.destroy()
 }

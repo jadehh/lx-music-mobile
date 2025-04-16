@@ -1,5 +1,5 @@
 import '@/utils/errorHandle'
-import { init as initLog } from '@/utils/log'
+import {init as initLog, log} from '@/utils/log'
 import { bootLog, getBootLog } from '@/utils/bootLog'
 import '@/config/globalData'
 import { getFontSize } from '@/utils/data'

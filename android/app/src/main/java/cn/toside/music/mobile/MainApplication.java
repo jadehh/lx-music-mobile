@@ -34,7 +34,7 @@ public class MainApplication extends NavigationApplication {
 //           packages.add(new LyricPackage());
 //           packages.add(new UtilsPackage());
           packages.add(new CryptoPackage());
-//           packages.add(new UserApiPackage());
+          packages.add(new UserApiPackage());
           return packages;
         }
 

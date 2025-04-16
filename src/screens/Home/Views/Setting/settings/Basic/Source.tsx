@@ -1,19 +1,19 @@
-import { memo, useCallback, useMemo, useRef } from 'react'
+import {memo, useCallback, useMemo, useRef} from 'react'
 
-import { View } from 'react-native'
+import {View} from 'react-native'
 
 import SubTitle from '../../components/SubTitle'
 import CheckBox from '@/components/common/CheckBox'
-import { createStyle } from '@/utils/tools'
-import { setApiSource } from '@/core/apiSource'
-import { useI18n } from '@/lang'
+import {createStyle} from '@/utils/tools'
+import {setApiSource} from '@/core/apiSource'
+import {useI18n} from '@/lang'
 import apiSourceInfo from '@/utils/musicSdk/api-source-info'
-import { useSettingValue } from '@/store/setting/hook'
-import { useStatus, useUserApiList } from '@/store/userApi'
+import {useSettingValue} from '@/store/setting/hook'
+import {useStatus, useUserApiList} from '@/store/userApi'
 import Button from '../../components/Button'
-import UserApiEditModal, { type UserApiEditModalType } from './UserApiEditModal'
+import UserApiEditModal, {type UserApiEditModalType} from './UserApiEditModal'
 import Text from '@/components/common/Text'
-import { useTheme } from '@/store/theme/hook'
+import {useTheme} from '@/store/theme/hook'
 // import { importUserApi, removeUserApi } from '@/core/userApi'
 
 const apiSourceList = apiSourceInfo.map(api => ({
@@ -24,8 +24,7 @@ const apiSourceList = apiSourceInfo.map(api => ({
 
 const useActive = (id: string) => {
   const activeLangId = useSettingValue('common.apiSource')
-  const isActive = useMemo(() => activeLangId == id, [activeLangId, id])
-  return isActive
+  return useMemo(() => activeLangId == id, [activeLangId, id])
 }
 
 const Item = ({ id, name, desc, statusLabel, change }: {

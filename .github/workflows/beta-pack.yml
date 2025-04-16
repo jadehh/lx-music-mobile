@@ -6,6 +6,34 @@ on:
       - beta
 
 jobs:
+  IOS:
+    name: IOS
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: Install sponge
+        run: brew install sponge
+      - name: Setup
+        uses: ./.github/actions/prebuild
+        with:
+          platform: "ios"
+      - name: Build Packages
+        run: |
+          cd ios
+          xcodebuild -scheme LxMusicMobile -workspace LxMusicMobile.xcworkspace -configuration release archive -archivePath LxMusicMobile.xcarchive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          chmod a+x ../scripts/xcarchive_to_ipa.sh
+          ../scripts/xcarchive_to_ipa.sh LxMusicMobile.xcarchive
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release.ipa
+          path: ios/*.ipa
+
+
   Android:
     name: Android
     runs-on: ubuntu-latest
