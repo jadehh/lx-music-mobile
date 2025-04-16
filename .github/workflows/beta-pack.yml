@@ -1,9 +1,6 @@
 name: Build Beta
-
 on:
-  push:
-    branches:
-      - beta
+  workflow_dispatch:
 
 jobs:
   IOS:
