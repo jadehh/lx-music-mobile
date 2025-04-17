@@ -31,7 +31,7 @@ export default memo(() => {
         currentHeightRef.current = height
         setStatusbarHeight(height)
       }
-      // console.log(layout, size)
+      console.log(layout, size)
       const currentSize = windowSizeTools.getSize()
       if (currentSize.width != layout.width || currentSize.height != layout.height) {
         windowSizeTools.setWindowSize(layout.width, layout.height)

@@ -36,6 +36,7 @@ export default () => {
   }
 
   const handleTagChange: HeaderBarProps['onTagChange'] = (name, id) => {
+
     songlistInfo.current.tagId = id
     void saveSongListSetting({ tagName: name, tagId: id })
     listRef.current?.loadList(songlistInfo.current.source, songlistInfo.current.sortId, id)

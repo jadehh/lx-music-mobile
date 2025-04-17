@@ -4,15 +4,19 @@ import { type Source } from '@/store/songlist/state'
 import List, { type ListProps, type ListType } from './List'
 
 
-export default () => {
+const TagList = () => {
+  console.log("TagList")
   const [visible, setVisible] = useState(false)
   const listRef = useRef<ListType>(null)
   // const [info, setInfo] = useState({ souce: 'kw', activeId: '' })
+  console.log("visible", visible)
 
 
   useEffect(() => {
+    console.log("useEffect")
     let isInited = false
     const handleShow = (source: Source, id: string) => {
+      console.log("handleShow", source, id)
       if (isInited) {
         listRef.current?.loadTag(source, id)
       } else {
@@ -45,3 +49,4 @@ export default () => {
       : null
   )
 }
+export default TagList;

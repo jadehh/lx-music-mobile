@@ -13,7 +13,7 @@ export interface TagType {
   setSelectedTagInfo: (source: Source, name: string, activeId: string) => void
 }
 
-export default forwardRef<TagType, TagProps>(({ onTagChange }, ref) => {
+const Tag =  forwardRef<TagType, TagProps>(({ onTagChange }, ref) => {
   // console.log('render tag btn')
   const currentTagBtnRef = useRef<CurrentTagBtnType>(null)
   // const tagPopupRef = useRef<TagPopupType>(null)
@@ -41,6 +41,7 @@ export default forwardRef<TagType, TagProps>(({ onTagChange }, ref) => {
   }))
 
   const handleShowList = () => {
+    console.log("handleShowList")
     global.app_event.showSonglistTagList(tagInfoRef.current.source, tagInfoRef.current.activeId)
   }
 
@@ -52,3 +53,4 @@ export default forwardRef<TagType, TagProps>(({ onTagChange }, ref) => {
 
   return <CurrentTagBtn ref={currentTagBtnRef} onShowList={handleShowList} />
 })
+export default Tag;

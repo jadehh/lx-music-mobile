@@ -7,6 +7,7 @@ import DrawerLayoutFixed, { type DrawerLayoutFixedType } from '@/components/comm
 import { COMPONENT_IDS } from '@/config/constant'
 import { scaleSizeW } from '@/utils/pixelRatio'
 import type { InitState as CommonState } from '@/store/common/state'
+import {Text, View} from "react-native";
 
 const MAX_WIDTH = scaleSizeW(560)
 
@@ -38,7 +39,9 @@ export default () => {
     }
   }, [])
 
-  const navigationView = () => <TagList />
+  const navigationView = ()=>{
+    return <View style={{backgroundColor:"#ffffff"}}><Text>歌单信息</Text><TagList></TagList></View>
+  }
   // console.log('render drawer content')
 
   return (

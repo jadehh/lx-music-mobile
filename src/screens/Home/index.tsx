@@ -7,6 +7,7 @@ import Vertical from './Vertical'
 import Horizontal from './Horizontal'
 import { navigations } from '@/navigation'
 import settingState from '@/store/setting/state'
+import {log} from "@/utils/log.ts";
 
 
 interface Props {
@@ -25,6 +26,8 @@ export default ({ componentId }: Props) => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  log.todo("使用垂直布局还是水平布局,isHorizontalMode",isHorizontalMode)
 
   return (
     <PageContent>

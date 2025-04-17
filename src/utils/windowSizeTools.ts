@@ -1,11 +1,13 @@
 import { Dimensions, StatusBar } from 'react-native'
 import { getWindowSize as getWindowSizeRaw } from './nativeModules/utils'
+import {log} from "@/utils/log.ts";
 // import { log } from './log'
 
 export type SizeHandler = (size: { width: number, height: number }) => void
 export const getWindowSize = async() => {
   return getWindowSizeRaw().then((size) => {
     const scale = Dimensions.get('window').scale
+    log.debug('getWindowSize', size, scale)
     size.width = size.width / scale
     size.height = size.height / scale
     return size
@@ -40,7 +42,7 @@ export const windowSizeTools = {
     //   })
     // })
     const size = await getWindowSize()
-    // log.info('win size', size)
+    log.info('win size', size)
     if (size.width) {
       this.size = size
     } else {
@@ -51,7 +53,7 @@ export const windowSizeTools = {
         height: Math.round(window.height) + (StatusBar.currentHeight ?? 0),
       }
     }
-    // console.log('init windowSizeTools')
+    console.log('init windowSizeTools')
     return size
   },
   setWindowSize(width: number, height: number) {
