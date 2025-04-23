@@ -5,18 +5,14 @@ import List, { type ListProps, type ListType } from './List'
 
 
 const TagList = () => {
-  console.log("TagList")
   const [visible, setVisible] = useState(false)
   const listRef = useRef<ListType>(null)
   // const [info, setInfo] = useState({ souce: 'kw', activeId: '' })
-  console.log("visible", visible)
 
 
   useEffect(() => {
-    console.log("useEffect")
     let isInited = false
     const handleShow = (source: Source, id: string) => {
-      console.log("handleShow", source, id)
       if (isInited) {
         listRef.current?.loadTag(source, id)
       } else {
@@ -30,9 +26,10 @@ const TagList = () => {
       }
     }
     global.app_event.on('showSonglistTagList', handleShow)
-
+    console.log("Tag List show Song List Tag List On")
     return () => {
       global.app_event.off('showSonglistTagList', handleShow)
+      console.log("Tag List show Song List Tag List Off")
     }
   }, [])
 

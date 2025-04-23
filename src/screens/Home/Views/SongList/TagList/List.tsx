@@ -32,7 +32,9 @@ export default forwardRef<ListType, ListProps>(({ onTagChange }, ref) => {
     }
   }, [])
 
-  useImperativeHandle(ref, () => ({
+  useImperativeHandle(ref, () => {
+    console.log("load Tag")
+    return {
     loadTag(source, id) {
       if (id != activeId) setActiveId(id)
       if (source != prevSource.current) {
@@ -48,9 +50,7 @@ export default forwardRef<ListType, ListProps>(({ onTagChange }, ref) => {
         })
       }
     },
-  }))
-
-
+  }})
   return (
     <ScrollView style={{ flexShrink: 1, flexGrow: 0 }} keyboardShouldPersistTaps={'always'}>
       <View style={styles.tagContainer} onStartShouldSetResponder={() => true}>

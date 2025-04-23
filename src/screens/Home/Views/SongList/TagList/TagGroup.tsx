@@ -34,7 +34,8 @@ export default ({ name, list, onTagChange, activeId }: TagGroupProps) => {
                 <Button
                   style={{ ...styles.tagButton, backgroundColor: theme['c-button-background'] }}
                   key={item.id}
-                  onPress={() => { onTagChange(item.name, item.id) }}
+                  onPress={() => {
+                    onTagChange(item.name, item.id) }}
                 >
                   <Text style={styles.tagButtonText} color={theme['c-font']} >{item.name}</Text>
                 </Button>

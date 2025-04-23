@@ -41,7 +41,7 @@ const Tag =  forwardRef<TagType, TagProps>(({ onTagChange }, ref) => {
   }))
 
   const handleShowList = () => {
-    console.log("handleShowList")
+    console.log("Show List")
     global.app_event.showSonglistTagList(tagInfoRef.current.source, tagInfoRef.current.activeId)
   }
 

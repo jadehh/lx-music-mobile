@@ -31,17 +31,17 @@ export default () => {
     global.state_event.on('navActiveIdUpdated', handleFixDrawer)
     global.app_event.on('showSonglistTagList', handleShow)
     global.app_event.on('hideSonglistTagList', handleHide)
+    console.log("show Song List Tag List","On")
 
     return () => {
       global.state_event.off('navActiveIdUpdated', handleFixDrawer)
       global.app_event.off('showSonglistTagList', handleShow)
       global.app_event.off('hideSonglistTagList', handleHide)
+      console.log("show Song List Tag List","Off")
     }
   }, [])
 
-  const navigationView = ()=>{
-    return <View style={{backgroundColor:"#ffffff"}}><Text>歌单信息</Text><TagList></TagList></View>
-  }
+  const navigationView = ()=> <TagList></TagList>
   // console.log('render drawer content')
 
   return (
@@ -50,7 +50,6 @@ export default () => {
       visibleNavNames={[COMPONENT_IDS.home]}
       widthPercentage={0.8}
       widthPercentageMax={MAX_WIDTH}
-      drawerPosition={settingState.setting['common.drawerLayoutPosition']}
       renderNavigationView={navigationView}
       drawerBackgroundColor={theme['c-content-background']}
       style={{ elevation: 1 }}
