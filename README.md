@@ -114,3 +114,8 @@
 ---
 
 若对此有疑问请 mail to: lyswhut+qq.com (请将 `+` 替换成 `@`)
+
+```bash
+ xcodebuild -scheme LxMusicMobile -workspace LxMusicMobile.xcworkspace -configuration release archive -archivePath LxMusicMobile.xcarchive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+   ../scripts/xcarchive_to_ipa.sh LxMusicMobile.xcarchive
+```

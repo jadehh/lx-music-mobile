@@ -16,10 +16,12 @@ export const aesDecrypt = (text: string, b64Key: string) => {
 }
 
 export const rsaEncrypt = (buffer: Buffer, key: string): string => {
+    console.log("使用RSA解密")
   // return publicEncrypt({ key, padding: constants.RSA_PKCS1_OAEP_PADDING }, buffer).toString('base64')
   return rsaEncryptSync(buffer.toString('base64'), key, RSA_PADDING.OAEPWithSHA1AndMGF1Padding)
 }
 export const rsaDecrypt = (buffer: Buffer, key: string): string => {
+  console.log("使用RSA解密")
   // return privateDecrypt({ key, padding: constants.RSA_PKCS1_OAEP_PADDING }, buffer)
   return rsaDecryptSync(buffer.toString('base64'), key, RSA_PADDING.OAEPWithSHA1AndMGF1Padding)
 }

@@ -34,7 +34,7 @@ export default ({ componentId }: Props) => {
       {
         isHorizontalMode
           ? <Horizontal />
-          : <Vertical />
+          : <Vertical isHorizontalMode={isHorizontalMode} />
       }
     </PageContent>
   )

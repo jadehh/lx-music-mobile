@@ -83,7 +83,7 @@ export const onScreenStateChange = (handler: (state: 'ON' | 'OFF') => void): () 
 
 export const getWindowSize = async(): Promise<{ width: number, height: number }> => {
   log.todo("get windows Size")
-  return {width:720,height:640}
+  return {width:0,height:0}
   // return UtilsModule.getWindowSize()
 }
 

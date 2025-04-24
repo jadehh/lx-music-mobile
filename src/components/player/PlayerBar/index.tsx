@@ -12,14 +12,14 @@ import { useTheme } from '@/store/theme/hook'
 import { useSettingValue } from '@/store/setting/hook'
 
 
-export default memo(({ isHome = false }: { isHome?: boolean }) => {
+export default memo(({ isHome = false, isHorizontalMode = false}: { isHome?: boolean, isHorizontalMode?:boolean }) => {
   // const { onLayout, ...layout } = useLayout()
   const { keyboardShown } = useKeyboard()
   const theme = useTheme()
   const autoHidePlayBar = useSettingValue('common.autoHidePlayBar')
 
   const playerComponent = useMemo(() => (
-    <View style={{ ...styles.container, backgroundColor: theme['c-content-background'] }}>
+    <View style={isHorizontalMode? { ...styles.containerHorizontal, backgroundColor: theme['c-content-background'] }:{ ...styles.containerVertical, backgroundColor: theme['c-content-background'] }}>
       <Pic isHome={isHome} />
       <View style={styles.center}>
         <Title isHome={isHome} />
@@ -33,15 +33,13 @@ export default memo(({ isHome = false }: { isHome?: boolean }) => {
       </View>
     </View>
   ), [theme, isHome])
-
   // console.log('render pb')
-
   return autoHidePlayBar && keyboardShown ? null : playerComponent
 })
 
 
 const styles = createStyle({
-  container: {
+  containerVertical: {
     width: '100%',
     // height: 100,
     // paddingTop: progressContentPadding,
@@ -56,7 +54,29 @@ const styles = createStyle({
     borderTopRightRadius: 6,
     flexDirection: 'row',
     alignItems: 'center',
-    elevation: 10,
+    // elevation: 10,
+  },
+
+   containerHorizontal: {
+    position:"absolute",
+    bottom:60,
+    width: '100%',
+    paddingLeft:20,
+    paddingRight:20,
+    // height: 100,
+    // paddingTop: progressContentPadding,
+    // marginTop: -progressContentPadding,
+    // backgroundColor: 'rgba(0, 0, 0, .1)',
+    // borderTopWidth: BorderWidths.normal2,
+    // paddingVertical: 5,
+    // paddingLeft: 5,
+    // backgroundColor: AppColors.primary,
+    // backgroundColor: 'red',
+    // borderTopLeftRadius: 6,
+    // borderTopRightRadius: 6,
+    flexDirection: 'row',
+    alignItems: 'center',
+    // elevation: 10,
   },
   left: {
     // borderRadius: 3,

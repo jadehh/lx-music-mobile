@@ -8,10 +8,11 @@ import { useSettingValue } from '@/store/setting/hook'
 import { COMPONENT_IDS } from '@/config/constant'
 import DrawerLayoutFixed, { type DrawerLayoutFixedType } from '@/components/common/DrawerLayoutFixed'
 import { scaleSizeW } from '@/utils/pixelRatio'
+import BottomNav from '@/screens/Home/Vertical/BottomNav'
 
 const MAX_WIDTH = scaleSizeW(300)
 
-const Content = () => {
+const Content = ({ isHorizontalMode = false }: { isHorizontalMode?: boolean }) => {
   const drawer = useRef<DrawerLayoutFixedType>(null)
 
   useEffect(() => {
@@ -43,7 +44,8 @@ const Content = () => {
       renderNavigationView={navigationView}>
       <Header />
       <Main />
-      <PlayerBar isHome />
+      <PlayerBar isHome isHorizontalMode />
+      <BottomNav></BottomNav>
       {/* <View style={styles.container}>
       </View> */}
     </DrawerLayoutFixed>

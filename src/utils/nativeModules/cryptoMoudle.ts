@@ -8,6 +8,7 @@ import CryptoES from 'crypto-es'
 
 import {cheatTip} from "@/utils/tools.ts";
 
+
 function padTo16Bytes(buffer: Buffer): Buffer {
   const length = buffer.length;
   const paddingLength = 16 - (length % 16);
@@ -51,6 +52,7 @@ export const generateRsaKey = async () => {
 
 export const rsaEncrypt = async (text: string, key: string, padding: RSA_PADDING): Promise<string> => {
   // console.log(sourceFilePath, targetFilePath)
+  console.log("RSA加密")
   return CryptoModule.rsaEncrypt(text, key
       .replace(KEY_PREFIX.publicKeyStart, '')
       .replace(KEY_PREFIX.publicKeyEnd, ''),
@@ -59,6 +61,7 @@ export const rsaEncrypt = async (text: string, key: string, padding: RSA_PADDING
 
 export const rsaDecrypt = async (text: string, key: string, padding: RSA_PADDING): Promise<string> => {
   // console.log(sourceFilePath, targetFilePath)
+    console.log("RSA解密")
   return CryptoModule.rsaDecrypt(text, key
       .replace(KEY_PREFIX.privateKeyStart, '')
       .replace(KEY_PREFIX.privateKeyEnd, ''),
@@ -67,6 +70,7 @@ export const rsaDecrypt = async (text: string, key: string, padding: RSA_PADDING
 
 export const rsaEncryptSync = (text: string, key: string, padding: RSA_PADDING): string => {
   // console.log(sourceFilePath, targetFilePath)
+  console.log("RSA 加密")
   return CryptoModule.rsaEncryptSync(text, key
       .replace(KEY_PREFIX.publicKeyStart, '')
       .replace(KEY_PREFIX.publicKeyEnd, ''),
@@ -75,6 +79,7 @@ export const rsaEncryptSync = (text: string, key: string, padding: RSA_PADDING):
 
 export const rsaDecryptSync = (text: string, key: string, padding: RSA_PADDING): string => {
   // console.log(sourceFilePath, targetFilePath)
+    console.log("RSA 解密")
   return CryptoModule.rsaDecryptSync(text, key
       .replace(KEY_PREFIX.privateKeyStart, '')
       .replace(KEY_PREFIX.privateKeyEnd, ''),
@@ -83,53 +88,23 @@ export const rsaDecryptSync = (text: string, key: string, padding: RSA_PADDING):
 
 
 export const aesEncrypt = async (text: string, key: string, vi: string, mode: AES_MODE): Promise<string> => {
+    console.log("Aes 加密")
   // console.log(sourceFilePath, targetFilePath)
   return CryptoModule.aesEncrypt(text, key, vi, mode)
 }
 
 export const aesDecrypt = async (text: string, key: string, vi: string, mode: AES_MODE): Promise<string> => {
   // console.log(sourceFilePath, targetFilePath)
+  console.log("Aes 解密")
   return CryptoModule.aesDecrypt(text, key, vi, mode)
 }
 
 export const aesEncryptSync = (text: string, key: string, vi: string, mode: AES_MODE): string => {
-  log.debug("aesEncryptSync - text:", text);
-  log.debug("aesEncryptSync - key:", key);
-  log.debug("aesEncryptSync - vi:", vi);
-  log.debug("aesEncryptSync - mode:", mode);
-
-  const textDecodeBase64 = Buffer.from(text, 'base64')
-  const keyDecodeBase64 = Buffer.from(key, 'base64')
-  const viDecodeBase64 = Buffer.from(vi, 'base64')
-
-  log.debug("textDecodeBase64:", textDecodeBase64);
-  log.debug("keyDecodeBase64 - key:", keyDecodeBase64);
-  log.debug("viDecodeBase64 - vi:", viDecodeBase64);
-
-  var aesEncryptString = ""
-  switch (mode) {
-    case AES_MODE.CBC_128_PKCS7Padding:
-      log.todo("CBC_128_PKCS7Padding")
-      break
-    case AES_MODE.ECB_128_NoPadding:
-      const aesEncryptNoPadding = CryptoES.AES.encrypt(CryptoES.lib.WordArray.create(textDecodeBase64), CryptoES.lib.WordArray.create(keyDecodeBase64), {
-          mode: CryptoES.mode.ECB,
-          padding: CryptoES.pad.Pkcs7
-        });
-        aesEncryptString = aesEncryptNoPadding.toString()
-      break
-  }
-
-  const javaEncrypted = CryptoModule.aesEncryptSync(text, key, vi, mode)
-  if (aesEncryptString === javaEncrypted) {
-    log.info("适配成功")
-  } else {
-    log.error("适配失败,aesEncryptString:", aesEncryptString, "javaEncrypted:", javaEncrypted);
-  }
-  return javaEncrypted
+  return CryptoModule.aesEncryptSync(text, key, vi, mode)
 }
 
 export const aesDecryptSync = (text: string, key: string, vi: string, mode: AES_MODE): string => {
   // console.log(sourceFilePath, targetFilePath)
+  console.log("Aes 解密")
   return CryptoModule.aesDecryptSync(text, key, vi, mode)
 }

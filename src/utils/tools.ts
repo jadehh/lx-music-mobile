@@ -132,7 +132,13 @@ export const toast = (message: string, duration: 'long' | 'short' = 'short', pos
       offset = 120
       break
   }
-  ToastAndroid.showWithGravityAndOffset(message, _duration, _position, 0, offset)
+  if (Platform.OS == "android"){
+      ToastAndroid.showWithGravityAndOffset(message, _duration, _position, 0, offset)
+  }else{
+      Alert.alert(message)
+  }
+
+
 }
 
 export const openUrl = async(url: string): Promise<void> => Linking.canOpenURL(url).then(async() => Linking.openURL(url))

@@ -1,4 +1,4 @@
-import { View, TouchableOpacity } from 'react-native'
+import {View, TouchableOpacity, SafeAreaView} from 'react-native'
 // import Button from '@/components/common/Button'
 // import { navigations } from '@/navigation'
 // import { BorderWidths } from '@/theme'
@@ -101,7 +101,7 @@ const Header = () => {
   const drawerLayoutPosition = useSettingValue('common.drawerLayoutPosition')
 
   return (
-    <>
+    <SafeAreaView>
       <StatusBar />
       {
         drawerLayoutPosition == 'left'
@@ -109,7 +109,7 @@ const Header = () => {
           : <RightHeader />
       }
 
-    </>
+    </SafeAreaView>
   )
 }
 

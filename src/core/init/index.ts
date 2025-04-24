@@ -14,6 +14,8 @@ import settingState from '@/store/setting/state'
 import { checkUpdate } from '@/core/version'
 import { bootLog } from '@/utils/bootLog'
 import { cheatTip } from '@/utils/tools'
+import {processDataWithCallback} from "@/utils/nativeModules/myNativeModule.ts";
+import {decodeBase64} from "@/utils/nativeModules/cryptoMoudle.ts";
 
 let isFirstPush = true
 const handlePushedHomeScreen = async() => {
@@ -45,16 +47,16 @@ export default async() => {
   await initI18n(setting)
   bootLog('I18n inited.')
 
-  await initUserApi(setting)
-  bootLog('User Api inited.')
-
+  // await initUserApi(setting)
+  // bootLog('User Api inited.')
+  //
   setApiSource(setting['common.apiSource'])
   bootLog('Api inited.')
 
   registerPlaybackService()
   bootLog('Playback Service Registered.')
-  await initPlayer(setting)
-  bootLog('Player inited.')
+  // await initPlayer(setting)
+  // bootLog('Player inited.')
   await dataInit(setting)
   bootLog('Data inited.')
   await initCommonState(setting)

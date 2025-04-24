@@ -43,7 +43,7 @@ export default memo(() => {
   }
 
   return (
-    <View style={{ height: HEADER_HEIGHT + statusBarHeight, paddingTop: statusBarHeight }} nativeID={NAV_SHEAR_NATIVE_IDS.playDetail_header}>
+    <View style={{ height: HEADER_HEIGHT + statusBarHeight + 80, paddingTop: statusBarHeight }} nativeID={NAV_SHEAR_NATIVE_IDS.playDetail_header}>
       <StatusBar />
       <View style={styles.container}>
         <Btn icon="chevron-left" onPress={back} />

@@ -30,7 +30,9 @@ const rsaEncrypt = (buffer, key) => {
 
 export const weapi = object => {
   const text = JSON.stringify(object)
-  const secretKey = String(Math.random()).substring(2, 18)
+  var secretKey = String(Math.random()).substring(2, 18)
+  secretKey = "6733132423636862"
+  console.log("网易SecretKey",secretKey)
   return {
     params: aesEncrypt(btoa(aesEncrypt(Buffer.from(text).toString('base64'), AES_MODE.CBC_128_PKCS7Padding, presetKey, iv)), AES_MODE.CBC_128_PKCS7Padding, btoa(secretKey), iv),
     encSecKey: rsaEncrypt(Buffer.from(secretKey).reverse(), publicKey).toString('hex'),
